@@ -1,14 +1,20 @@
 import React from "react";
 import "./App.css";
-// import the Container Component from the semantic-ui-react
-import { Container } from "semantic-ui-react";
+
+import 'fontsource-roboto';
+import Container from '@material-ui/core/Container';
+
+
 // import the ToDoList component
-import ToDoList from "./To-Do-List";
+import InputField from "./components/TextInput";
+import TimeDropdown from "./components/TimeDropdown";
+
 function App() {
   return (
     <div>
-      <Container>
-        <ToDoList />
+      <Container maxWidth="sm">
+        <InputField />
+        <TimeDropdown />
       </Container>
     </div>
   );
