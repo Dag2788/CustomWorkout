@@ -14,7 +14,6 @@ class TimeDropdown extends Component {
     super(props);
     this.state = { value: 30 };
     this.handleChange = this.handleChange.bind(this);
-    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event, value) {
@@ -24,7 +23,6 @@ class TimeDropdown extends Component {
       displayText: value ? timerOptions[value].text : "30 seconds"
     });
     this.setState({ value: event.target.value });
-
     console.log(value);
   }
 

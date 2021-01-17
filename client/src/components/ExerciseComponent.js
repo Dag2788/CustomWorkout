@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
-
 import "fontsource-roboto";
-
 import TextInput from "./TextInput";
 import TimeDropdown from "./TimeDropdown";
 
@@ -16,8 +14,6 @@ class ExerciseComponent extends Component {
         exerciseName: ""
       }
     };
-
-    // this.handleExerciseNameInput = this.handleExerciseNameInput.bind(this);
     this.handleInput = this.handleInput.bind(this);
   }
 
