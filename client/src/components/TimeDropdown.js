@@ -24,7 +24,6 @@ class TimeDropdown extends Component {
       displayText: value ? timerOptions[value].text : "30 seconds"
     });
     this.setState({ value: event.target.value });
-    console.log(value);
   }
 
   render() {

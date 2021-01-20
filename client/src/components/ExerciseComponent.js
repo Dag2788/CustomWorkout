@@ -4,7 +4,14 @@ import "fontsource-roboto";
 import TextInput from "./TextInput";
 import TimeDropdown from "./TimeDropdown";
 import CancelIcon from "@material-ui/icons/Cancel";
-import Button from "@material-ui/core/Button";
+
+/*eslint-disable */
+type Props = {
+  addExercise: Function,
+  deleteExercise: Function,
+  index: Number
+};
+/*eslint-enable */
 
 class ExerciseComponent extends Component {
   constructor(props) {
@@ -17,9 +24,11 @@ class ExerciseComponent extends Component {
       }
     };
     this.handleInput = this.handleInput.bind(this);
+    this.removeExercise = this.removeExercise.bind(this);
   }
 
   handleInput(key, value) {
+    let { addExercise, index } = this.props;
     this.setState(prevState => {
       let exerciseObj = Object.assign({}, prevState.exerciseObj);
       if (key === "time") {
@@ -28,13 +37,14 @@ class ExerciseComponent extends Component {
       } else {
         exerciseObj.exerciseName = value.exerciseName;
       }
-      console.log(exerciseObj);
+      addExercise(exerciseObj, index);
       return { exerciseObj };
     });
   }
 
-  deleteExercise() {
-    console.log("doubt this will print");
+  removeExercise() {
+    let { deleteExercise, index } = this.props;
+    deleteExercise(index);
   }
 
   render() {
@@ -58,7 +68,7 @@ class ExerciseComponent extends Component {
             <Grid item>
               <CancelIcon
                 id="deletebutton"
-                onClick={this.deleteExercise}
+                onClick={this.removeExercise}
                 style={{ marginTop: 15, color: "red" }}
               />
             </Grid>

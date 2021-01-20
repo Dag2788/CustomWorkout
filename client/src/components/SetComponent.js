@@ -10,42 +10,71 @@ class SetComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      setExerciseList: []
+      exerciseList: [
+        {
+          timeInSeconds: 30,
+          displayText: "30 seconds",
+          exerciseName: ""
+        }
+      ]
     };
     this.handleInput = this.handleInput.bind(this);
+    this.addNewExercise = this.addNewExercise.bind(this);
+    this.deleteExercise = this.deleteExercise.bind(this);
   }
 
-  handleInput(key, value) {
+  handleInput(value, index) {
     this.setState(prevState => {
-      let exerciseObj = Object.assign({}, prevState.exerciseObj);
-      if (key === "time") {
-        exerciseObj.timeInSeconds = value.timeInSeconds;
-        exerciseObj.displayText = value.displayText;
-      } else {
-        exerciseObj.exerciseName = value.exerciseName;
-      }
-      console.log(exerciseObj);
-      return { exerciseObj };
+      let exerciseList = Object.assign([], prevState.exerciseList);
+      exerciseList[index] = value;
+      console.log(exerciseList);
+      return { exerciseList };
     });
   }
 
-  addExercise() {
+  addNewExercise() {
     console.log("Adding object");
+    let { exerciseList } = this.state;
+    exerciseList.push({
+      timeInSeconds: 30,
+      displayText: "30 seconds",
+      exerciseName: ""
+    });
+    this.setState({
+      exerciseList
+    });
+  }
+
+  deleteExercise(index) {
+    let { exerciseList } = this.state;
+    delete exerciseList[index];
+    this.setState({
+      exerciseList
+    });
   }
 
   render() {
-    let { exerciseObj } = this.state;
+    let { exerciseList } = this.state;
     return (
       <div>
         <Grid item xs={12} style={{ marginTop: 10 }}>
-          <Grid container justify="center" direction="row">
-            <Grid item>
-              <ExerciseComponent />
-            </Grid>
-          </Grid>
+          {exerciseList.length > 0 &&
+            exerciseList.map((exercise, index) => {
+              return (
+                <Grid container justify="center" direction="row">
+                  <Grid item>
+                    <ExerciseComponent
+                      deleteExercise={this.deleteExercise}
+                      index={index}
+                      addExercise={this.handleInput}
+                    />
+                  </Grid>
+                </Grid>
+              );
+            })}
           <Grid container justify="center" direction="row" spacing={2}>
             <Grid item xs={9} sm={3}>
-              <Button onClick={this.addExercise}>
+              <Button onClick={this.addNewExercise}>
                 <AddCircleIcon
                   fontSize="large"
                   style={{
