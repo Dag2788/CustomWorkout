@@ -35,7 +35,7 @@ class ExerciseComponent extends Component {
     let { exerciseObj } = this.state;
     return (
       <div>
-        <Grid item xs={12}>
+        <Grid item xs={12} style={{ marginTop: 10 }}>
           <Grid container justify="center" spacing={2}>
             <Grid item>
               <TextInput
