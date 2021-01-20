@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
+import { isMobile } from "react-device-detect";
 
 /*eslint-disable */
 type Props = {
@@ -32,6 +33,7 @@ class TextInput extends Component {
           label="Exercise"
           variant="outlined"
           value={exerciseName ? exerciseName : ""}
+          style={{ width: isMobile ? 150 : 200 }}
         />
       </form>
     );

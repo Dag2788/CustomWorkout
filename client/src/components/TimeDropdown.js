@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from "@material-ui/core/TextField";
 import Autocomplete from "@material-ui/lab/Autocomplete";
 import { timerOptions } from "./constants/TimeMap";
+import { isMobile } from "react-device-detect";
 
 /*eslint-disable */
 type Props = {
@@ -34,12 +35,18 @@ class TimeDropdown extends Component {
         options={Object.keys(timerOptions).map(name => name)}
         getOptionLabel={option => timerOptions[option].text}
         onChange={this.handleChange}
-        style={{ width: 300 }}
+        style={{ width: isMobile ? 150 : 200 }}
         defaultValue={30}
         value={selectedTime ? selectedTime : 30}
         getOptionSelected={(option, value) => option == value}
         renderInput={params => (
-          <TextField {...params} label="Time" variant="outlined" />
+          <TextField
+            xs={6}
+            sm={3}
+            {...params}
+            label="Time"
+            variant="outlined"
+          />
         )}
       />
     );
