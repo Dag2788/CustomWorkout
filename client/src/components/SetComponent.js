@@ -33,7 +33,6 @@ class SetComponent extends Component {
   }
 
   addNewExercise() {
-    console.log("Adding object");
     let { exerciseList } = this.state;
     exerciseList.push({
       timeInSeconds: 30,
