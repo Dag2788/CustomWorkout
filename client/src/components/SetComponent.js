@@ -4,6 +4,7 @@ import "fontsource-roboto";
 import ExerciseComponent from "./ExerciseComponent";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import { isMobile } from "react-device-detect";
+import Button from "@material-ui/core/Button";
 
 class SetComponent extends Component {
   constructor(props) {
@@ -28,6 +29,10 @@ class SetComponent extends Component {
     });
   }
 
+  addExercise() {
+    console.log("Adding object");
+  }
+
   render() {
     let { exerciseObj } = this.state;
     return (
@@ -40,14 +45,16 @@ class SetComponent extends Component {
           </Grid>
           <Grid container justify="center" direction="row" spacing={2}>
             <Grid item xs={9} sm={3}>
-              <AddCircleIcon
-                fontSize="large"
-                style={{
-                  paddingLeft: isMobile ? -10 : 0,
-                  marginTop: 15,
-                  color: "green"
-                }}
-              />
+              <Button onClick={this.addExercise}>
+                <AddCircleIcon
+                  fontSize="large"
+                  style={{
+                    paddingLeft: isMobile ? -10 : 0,
+                    marginTop: 15,
+                    color: "green"
+                  }}
+                />
+              </Button>
             </Grid>
           </Grid>
         </Grid>

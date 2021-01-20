@@ -4,6 +4,7 @@ import "fontsource-roboto";
 import TextInput from "./TextInput";
 import TimeDropdown from "./TimeDropdown";
 import CancelIcon from "@material-ui/icons/Cancel";
+import Button from "@material-ui/core/Button";
 
 class ExerciseComponent extends Component {
   constructor(props) {
@@ -32,6 +33,10 @@ class ExerciseComponent extends Component {
     });
   }
 
+  deleteExercise() {
+    console.log("doubt this will print");
+  }
+
   render() {
     let { exerciseObj } = this.state;
     return (
@@ -51,7 +56,11 @@ class ExerciseComponent extends Component {
               />
             </Grid>
             <Grid item>
-              <CancelIcon style={{ marginTop: 15, color: "red" }} />
+              <CancelIcon
+                id="deletebutton"
+                onClick={this.deleteExercise}
+                style={{ marginTop: 15, color: "red" }}
+              />
             </Grid>
           </Grid>
         </Grid>
