@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import Grid from "@material-ui/core/Grid";
 import "fontsource-roboto";
-import TextInput from "./TextInput";
-import TimeDropdown from "./TimeDropdown";
-import CancelIcon from "@material-ui/icons/Cancel";
+import ExerciseComponent from "./ExerciseComponent";
+import AddCircleIcon from "@material-ui/icons/AddCircle";
+import { isMobile } from "react-device-detect";
 
-class ExerciseComponent extends Component {
+class SetComponent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      exerciseObj: {
-        timeInSeconds: 30,
-        displayText: "30 seconds",
-        exerciseName: ""
-      }
+      setExerciseList: []
     };
     this.handleInput = this.handleInput.bind(this);
   }
@@ -37,21 +33,21 @@ class ExerciseComponent extends Component {
     return (
       <div>
         <Grid item xs={12} style={{ marginTop: 10 }}>
-          <Grid container justify="center" spacing={2}>
+          <Grid container justify="center" direction="row">
             <Grid item>
-              <TextInput
-                exerciseName={exerciseObj.exerciseName}
-                handleInput={this.handleInput}
-              />
+              <ExerciseComponent />
             </Grid>
-            <Grid item>
-              <TimeDropdown
-                selectedTime={exerciseObj.timeInSeconds}
-                handleInput={this.handleInput}
+          </Grid>
+          <Grid container justify="center" direction="row" spacing={2}>
+            <Grid item xs={9} sm={3}>
+              <AddCircleIcon
+                fontSize="large"
+                style={{
+                  paddingLeft: isMobile ? -10 : 0,
+                  marginTop: 15,
+                  color: "green"
+                }}
               />
-            </Grid>
-            <Grid item>
-              <CancelIcon style={{ marginTop: 15, color: "red" }} />
             </Grid>
           </Grid>
         </Grid>
@@ -60,4 +56,4 @@ class ExerciseComponent extends Component {
   }
 }
 
-export default ExerciseComponent;
+export default SetComponent;

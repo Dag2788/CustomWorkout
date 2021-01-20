@@ -1,11 +1,11 @@
 import React from "react";
 import "./App.css";
-import ExerciseComponent from "./components/ExerciseComponent";
+import SetComponent from "./components/SetComponent";
 
 function App() {
   return (
     <div>
-      <ExerciseComponent />
+      <SetComponent />
     </div>
   );
 }
