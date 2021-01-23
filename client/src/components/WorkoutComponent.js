@@ -1,8 +1,5 @@
 import React, { Component } from "react";
-
-/*eslint-disable */
-
-/*eslint-enable */
+import { exerciseObj } from "./constants/Workouts";
 
 class WorkoutComponent extends Component {
   constructor(props) {
@@ -11,11 +8,6 @@ class WorkoutComponent extends Component {
       value: "",
       done: false,
       paused: false,
-      i: 0,
-      y: 30,
-      hours: 0,
-      minutes: 0,
-      seconds: -1,
       exerciseName: "",
       timeLoop: () => {}
     };
@@ -47,7 +39,9 @@ class WorkoutComponent extends Component {
       "Rest"
     ];
     let i = 0;
-    let y = 30;
+    let y = exerciseObj[i].timeInSeconds;
+    let yMin = Math.floor(y / 60);
+    let ySec = y % 60;
     let hours = 0;
     let minutes = 0;
     let seconds = -1;
@@ -60,11 +54,6 @@ class WorkoutComponent extends Component {
           totalTime: hours + ": " + minutes + " : " + seconds,
           done: false,
           paused: false,
-          i: 0,
-          y: 30,
-          hours: 0,
-          minutes: 0,
-          seconds: -1,
           timeLoop: () => {}
         });
         return;
@@ -72,18 +61,20 @@ class WorkoutComponent extends Component {
       } else if (!paused) {
         if (y === 0 && i + 1 < ex.length) {
           i++;
-          y = 30;
+          //y = 30;
+          y = exerciseObj[i].timeInSeconds;
         } else if (i === ex.length - 1 && y === 0) {
           i = 0;
-          y = 30;
+          //y = 30;
+          y = exerciseObj[i].timeInSeconds;
         }
-
         this.setState({
-          exerciseName: ex[i],
-          timeRemaining: y + " seconds remaining"
+          exerciseName: exerciseObj[i].exerciseName,
+          timeRemaining: yMin + ":  " + ySec + " seconds remaining"
         });
-
         y--;
+        yMin = Math.floor(y / 60);
+        ySec = y % 60;
         seconds++;
         if (seconds === 60) {
           seconds = 0;
@@ -94,12 +85,7 @@ class WorkoutComponent extends Component {
           hours++;
         }
         this.setState({
-          totalTime: hours + ": " + minutes + " : " + seconds,
-          i,
-          y,
-          hours,
-          minutes,
-          seconds
+          totalTime: hours + ": " + minutes + " : " + seconds
         });
       }
     }, 1000);
@@ -131,19 +117,14 @@ class WorkoutComponent extends Component {
   }
 
   render() {
-    let { totalTime, exerciseName, timeRemaining, done } = this.state;
+    let { totalTime, exerciseName, timeRemaining } = this.state;
     return (
       <div noValidate>
         <button onClick={this.exerciseLoop}>Start Workout</button>
-
         <h1>{exerciseName}</h1>
-
         <h1>{timeRemaining}</h1>
-
         <button onClick={this.finish}>Finish Workout</button>
-
         <button onClick={this.pause}>Continue Workout</button>
-
         <h1>{totalTime}</h1>
       </div>
     );
