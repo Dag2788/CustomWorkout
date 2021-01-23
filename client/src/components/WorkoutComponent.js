@@ -115,15 +115,15 @@ class WorkoutComponent extends Component {
     return (
       <div noValidate>
         <button onClick={this.exerciseLoop}>Start Workout</button>
-        <h1>{exerciseName}</h1>
-        <h1>{timeRemaining}</h1>
+        <h1 style={{ color: "#8B0000" }}>{exerciseName}</h1>
+        <h1 style={{ color: "red" }}>{timeRemaining}</h1>
         <button onClick={this.finish}>Finish Workout</button>
         <button onClick={this.pause}>Continue Workout</button>
         <h1>{totalTime}</h1>
         {nextExercise && (
           <React.Fragment>
             <h1>Next exercise:</h1>
-            <h1>{nextExercise}</h1>
+            <h1 style={{ color: "#87CEEB" }}>{nextExercise}</h1>
           </React.Fragment>
         )}
       </div>

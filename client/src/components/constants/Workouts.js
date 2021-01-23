@@ -45,12 +45,12 @@ export const exerciseObj = [
     exerciseName: "Bicycle Abs"
   },
   {
-    timeInSeconds: 3,
+    timeInSeconds: 5,
     displayText: "30 seconds",
     exerciseName: "Plank"
   },
   {
-    timeInSeconds: 3,
+    timeInSeconds: 5,
     displayText: "30 seconds",
     exerciseName: "Rest"
   }
