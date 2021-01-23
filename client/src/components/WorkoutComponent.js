@@ -9,6 +9,7 @@ class WorkoutComponent extends Component {
       done: false,
       paused: false,
       exerciseName: "",
+      nextExercise: "",
       timeLoop: () => {}
     };
     this.intervalID = 0;
@@ -24,20 +25,6 @@ class WorkoutComponent extends Component {
       done: false,
       paused: false
     });
-
-    var ex = [
-      "Squats",
-      "Push Ups",
-      "Lounges",
-      "Standing Power Jacks",
-      "Squat Kicks",
-      "Tricep Dips",
-      "Leg Raises",
-      "Oblique Push Ups",
-      "Bicycle Abs",
-      "Plank",
-      "Rest"
-    ];
     let i = 0;
     let y = exerciseObj[i].timeInSeconds;
     let yMin = Math.floor(y / 60);
@@ -56,21 +43,27 @@ class WorkoutComponent extends Component {
           paused: false,
           timeLoop: () => {}
         });
+        this.intervalID = 0;
         return;
       } else if (paused) {
       } else if (!paused) {
-        if (y === 0 && i + 1 < ex.length) {
+        if (y === 0 && i + 1 < exerciseObj.length) {
           i++;
-          //y = 30;
           y = exerciseObj[i].timeInSeconds;
-        } else if (i === ex.length - 1 && y === 0) {
+          yMin = Math.floor(y / 60);
+          ySec = y % 60;
+        } else if (i === exerciseObj.length - 1 && y === 0) {
           i = 0;
-          //y = 30;
           y = exerciseObj[i].timeInSeconds;
+          yMin = Math.floor(y / 60);
+          ySec = y % 60;
         }
         this.setState({
+          nextExercise: exerciseObj[i + 1]
+            ? exerciseObj[i + 1].exerciseName
+            : "",
           exerciseName: exerciseObj[i].exerciseName,
-          timeRemaining: yMin + ":  " + ySec + " seconds remaining"
+          timeRemaining: yMin + ":  " + ySec + " remaining"
         });
         y--;
         yMin = Math.floor(y / 60);
@@ -99,7 +92,8 @@ class WorkoutComponent extends Component {
     this.setState({
       done: true,
       exerciseName: "REST IT OUT YALL",
-      timeRemaining: "That shit was bananas ya'll"
+      timeRemaining: "That shit was bananas ya'll",
+      nextExercise: ""
     });
   }
 
@@ -117,7 +111,7 @@ class WorkoutComponent extends Component {
   }
 
   render() {
-    let { totalTime, exerciseName, timeRemaining } = this.state;
+    let { totalTime, exerciseName, timeRemaining, nextExercise } = this.state;
     return (
       <div noValidate>
         <button onClick={this.exerciseLoop}>Start Workout</button>
@@ -126,6 +120,12 @@ class WorkoutComponent extends Component {
         <button onClick={this.finish}>Finish Workout</button>
         <button onClick={this.pause}>Continue Workout</button>
         <h1>{totalTime}</h1>
+        {nextExercise && (
+          <React.Fragment>
+            <h1>Next exercise:</h1>
+            <h1>{nextExercise}</h1>
+          </React.Fragment>
+        )}
       </div>
     );
   }
