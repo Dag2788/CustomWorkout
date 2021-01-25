@@ -1,13 +1,14 @@
 import React from "react";
 import "./App.css";
-import SetComponent from "./components/SetComponent";
 import WorkoutComponent from "./components/WorkoutComponent";
+import SetListComponent from "./components/SetListComponent";
 
 function App() {
   return (
     <div>
       {/* <SetComponent /> */}
-      <WorkoutComponent />
+      <SetListComponent />
+      {/* <WorkoutComponent /> */}
     </div>
   );
 }
