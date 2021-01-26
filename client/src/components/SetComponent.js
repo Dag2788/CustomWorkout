@@ -46,10 +46,14 @@ class SetComponent extends Component {
   }
 
   handleInput(value, index) {
+    let { handleChange } = this.props;
     this.setState(prevState => {
       let exerciseList = Object.assign([], prevState.exerciseList);
       exerciseList[index] = value;
       let totalTime = this.calculateTotalTime(exerciseList);
+      console.log(value);
+      handleChange(exerciseList, index, value.name);
+
       return { exerciseList, totalTime };
     });
   }
@@ -62,8 +66,10 @@ class SetComponent extends Component {
       displayText: "30 seconds",
       exerciseName: ""
     });
+    console.log(name);
     handleChange(exerciseList, index, name);
     this.setState({
+      name,
       exerciseList,
       totalTime: this.calculateTotalTime(exerciseList)
     });
@@ -81,6 +87,9 @@ class SetComponent extends Component {
   }
 
   handleName(event) {
+    let { exerciseList } = this.state;
+    let { handleChange, index } = this.props;
+    handleChange(exerciseList, index, event.target.value);
     this.setState({ name: event.target.value });
   }
 

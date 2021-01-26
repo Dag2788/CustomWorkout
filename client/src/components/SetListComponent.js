@@ -32,8 +32,11 @@ class SetListComponent extends Component {
 
   handleChange(event, index, name) {
     let { setList } = this.state;
+    console.log(name);
     if (setList[index]) {
-      setList[index].name = name;
+      if (name) {
+        setList[index].name = name;
+      }
       setList[index].exerciseList = event;
       console.log("SetList");
       console.log(setList);
@@ -43,8 +46,10 @@ class SetListComponent extends Component {
 
   deleteSet(index) {
     let { setList } = this.state;
-    delete setList[index];
-    this.setState({ setList });
+    if (setList[index]) {
+      delete setList[index];
+      this.setState({ setList });
+    }
   }
 
   addSet() {
