@@ -135,7 +135,7 @@ class SetComponent extends Component {
                 id="additional-actions1-header"
               >
                 <Grid container justify="center" direction="row" spacing={3}>
-                  <Grid item xs={4} sm={4}>
+                  <Grid item xs={4} sm={5}>
                     <FormControlLabel
                       aria-label="Acknowledge"
                       onClick={event => event.stopPropagation()}
@@ -148,6 +148,9 @@ class SetComponent extends Component {
                           label="Set Name"
                           variant="outlined"
                           value={name ? name : ""}
+                          style={{
+                            width: isMobile ? 100 : "auto"
+                          }}
                         />
                       }
                       label=""
@@ -228,6 +231,15 @@ class SetComponent extends Component {
                             color: "green"
                           }}
                         />
+                        <p
+                          style={{
+                            paddingLeft: isMobile ? 10 : 0,
+                            marginTop: 30,
+                            color: "green"
+                          }}
+                        >
+                          Add Exercise
+                        </p>
                       </Button>
                     </Grid>
                   </Grid>

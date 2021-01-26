@@ -78,6 +78,15 @@ class SetListComponent extends Component {
                 color: "green"
               }}
             />
+            <p
+              style={{
+                paddingLeft: isMobile ? 10 : 0,
+                marginTop: 30,
+                color: "green"
+              }}
+            >
+              Add Set
+            </p>
           </Button>
           {setList.length > 0 &&
             setList.map((exercise, index) => {
